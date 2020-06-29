@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--Default Settings-->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.custom</groupId>
+    <artifactId>maventest</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>maven-test-module</name>
+    <description>JustDoIt</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <custom.desc>Just-Do-It</custom.desc>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <custom.desc>local-Just-Do-It</custom.desc>
+            </properties>
+        </profile>
+        <profile>
+            <id>real</id>
+            <properties>
+                <custom.desc>real-Just-Do-It</custom.desc>
+            </properties>
+        </profile>
+    </profiles>
+    <!--!Default Settings-->
+
+    <!--Project Settings-->
+    <dependencies>
+        <!--lombok-->
+        <!--<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            &lt;!&ndash;의존성 전달하지 않음&ndash;&gt;
+            <optional>true</optional>
+        </dependency>-->
+        <!--h2-->
+        <!--<dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            &lt;!&ndash;런타임 시에만 사용한다.&ndash;&gt;
+            <scope>runtime</scope>
+        </dependency>-->
+    </dependencies>
+    <!--!Project Settings-->
+
+    <!--build Settings-->
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <resources>
+            <!--필터링 시킬꺼임-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <!--사용 할 리소스-->
+                <includes>
+                    <include>src/main/resources/include</include>
+                </includes>
+                <!--제외 할 리소스-->
+                <excludes>
+                    <exclude>src/main/resources/excludes</exclude>
+                </excludes>
+            </resource>
+            <!--필터링 안시킬꺼임.-->
+            <resource>
+                <directory>src/main/resources2</directory>
+            </resource>
+        </resources>
+        <!--<plugins>
+            &lt;!&ndash;기본 제공 플러그인 정보&ndash;&gt;
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>src/main/webapp</directory>
+                            <includes>
+                                <include>WEB-INF/web.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>-->
+    </build>
+    <!--기본설정.-->
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+    <!--!build Settings-->
+    <!--deploy Settings-->
+        <!--플러그인 저장소-->
+    <pluginRepositories>
+        <pluginRepository>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <!--Site , deploy 시 배포될 환경 설정-->
+    <!--<distributionManagement>
+       <site>
+            <id></id>
+            <url></url>
+        </site>
+        <repository>
+            <id>releases</id>
+            <url>http://pkgrepos.tmonc.net:8080/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>-->
+    <!--!deploy Settings-->
+</project>
